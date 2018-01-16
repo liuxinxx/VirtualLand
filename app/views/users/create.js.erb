@@ -1,0 +1,6 @@
+alert("<%= j  notice_message  %>")
+$(".alert").remove();
+$(".panel-default").before("<%= j  notice_message  %>");
+$(".rucaptcha-image-box").html("<%= j rucaptcha_image_tag(class:'rucaptcha-image', alt: 'Captcha') %>")
+<% flash.clear %>
+
