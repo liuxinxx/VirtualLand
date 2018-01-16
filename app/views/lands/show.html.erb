@@ -1,2 +1,72 @@
-<h1>Lands#show</h1>
-<p>Find me in app/views/lands/show.html.erb</p>
+<div id="map"></div>
+<!-- 信息标记 -->
+<script>
+  function initMap() {
+    var uluru = {lat: <%=@tag_lat%>, lng: <%=@tag_lng%>};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 2,
+      center: uluru,
+      // 禁止显示谷歌默认标签
+      disableDefaultUI: true
+    });
+    map.addListener('click', function(e) {
+      // alert(e.latLng.lat());
+      placeMarkerAndPanTo(e.latLng,map)
+    });
+
+
+
+    var contentString = '<%=render 'info_window' %>';
+
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    var rectangle = new google.maps.Rectangle({
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: '#FF0000',
+        fillOpacity: 0.35,
+        map: map,
+        bounds: {
+          north: <%=@bounds['N']%>,
+          south: <%=@bounds['S']%>,
+          east: <%=@bounds['E']%>,
+          west: <%=@bounds['W']%>
+        }
+      });
+
+    var marker = new google.maps.Marker({
+      position: uluru,
+      map: map,
+      title: 'Uluru (Ayers Rock)'
+    });
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+
+
+    function placeMarkerAndPanTo(latLng, map) {
+        var lat = (parseInt(latLng.lat()/5))*5-2.5
+        var lng = (parseInt(latLng.lng()/5))*5+2.5
+        // alert(latLng.lat().toString()+","+latLng.lng().toString()+"\n"+lat.toString()+","+lng.toString());
+        new google.maps.Rectangle({
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: '#FF0000',
+        fillOpacity: 0.35,
+        map: map,
+        bounds: {
+          north: lat+2.5,
+          south: lat-2.5,
+          east: lng+2.5,
+          west: lng-2.5
+        }
+      });
+      }
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAO4DnWVJ6jpDF77xDqrdgGp08-9hsPAU&libraries=drawing&callback=initMap"
+async defer></script>
