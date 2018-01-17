@@ -32,6 +32,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 gem 'therubyracer'
 gem 'execjs'
+gem 'bootstrap-tagsinput-rails', '~> 0.4.2.1'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

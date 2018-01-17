@@ -7,5 +7,7 @@ class LandsController < ApplicationController
   end
 
   def index
+
   end
+
 end
