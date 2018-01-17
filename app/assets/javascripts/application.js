@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require bootstrap
 //= require app
+//= require bootstrap-tagsinput
 //= require_tree .
 
 
