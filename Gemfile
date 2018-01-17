@@ -29,18 +29,14 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
-<<<<<<< HEAD
 # 验证码
 gem 'rucaptcha'
 gem 'dalli'
 gem 'simple_form'
 gem 'bcrypt'
-
-=======
 gem 'therubyracer'
 gem 'execjs'
 gem 'bootstrap-tagsinput-rails', '~> 0.4.2.1'
->>>>>>> 1ac2923ca99e1e3ce4b6ab3cbf794692ec48364e
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
