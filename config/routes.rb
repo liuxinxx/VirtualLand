@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resource :users
   get 'lands/show'
 
   get 'lands/index'

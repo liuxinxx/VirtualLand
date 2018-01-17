@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="panel panel-default ">
+    <div class="panel-heading">register</div>
+    <div class="panel-body">
+      <%= simple_form_for @user,remote:true do |f|%>
+        <%= f.input :name %>
+        <%= f.input :email %>
+        <%= f.input :password %>
+        <%= f.input :password_confirmation %>
+        <div class="form-group ">
+          <%= rucaptcha_input_tag( class:'form-control rucaptcha-text') %>
+          <a href="#" class='rucaptcha-image-box'><%= rucaptcha_image_tag(class:'rucaptcha-image', alt: 'Captcha') %></a>
+        </div>
+        <%= f.submit 'submit',class:'btn btn-info col-md-2' %>
+      <% end %>
+    </div>
+  </div>
+</div>
