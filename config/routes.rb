@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   post "login",to: 'sessions#create'
   get "logout",to: 'sessions#destroy'
   resource :users
-  get 'lands/index'
   get 'lands/show'
+  post 'lands/validation'
+  get 'lands/index'
 end

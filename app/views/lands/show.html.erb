@@ -75,12 +75,19 @@
           west: lng-2.5
         }
       });
-      $('.add').append("<p>["+lat.toString()+","+lng.toString()+"]</p>");
-      lands_json+="["+lat.toString()+","+lng.toString()+"] "+"\n";
+      $('.add').append("<span>["+lat.toString()+","+lng.toString()+"]  </span>");
+      lands_json+=""+lat.toString()+","+lng.toString()+"=";
       return false;
     }
     $('.btn').click(function() {
-      alert(lands_json);
+      $.ajax({
+        url:'/lands/validation',
+        type:'post',
+        data:{'lands':lands_json},
+        success:function(result){
+          alert(result);
+        }
+      })
     });
   }
 </script>

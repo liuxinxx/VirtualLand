@@ -1,2 +1,14 @@
-<h1>Lands#index</h1>
-<p>Find me in app/views/lands/index.html.erb</p>
+<div id="map"></div>
+<!-- 信息标记 -->
+<script>
+  function initMap() {
+    new google.maps.Map(document.getElementById('map'), {
+      zoom: 2,
+      center: {lat: 0, lng: 0},
+      // 禁止显示谷歌默认标签
+      disableDefaultUI: false
+    });
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAO4DnWVJ6jpDF77xDqrdgGp08-9hsPAU&libraries=drawing&callback=initMap"
+async defer></script>
