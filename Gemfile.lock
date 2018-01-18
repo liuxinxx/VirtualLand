@@ -204,11 +204,8 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
-<<<<<<< HEAD
   dalli
-=======
   execjs
->>>>>>> 1ac2923ca99e1e3ce4b6ab3cbf794692ec48364e
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)

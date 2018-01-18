@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">Login</div>
+    <div class="panel-body">
+      <%= form_for(:session ,url: login_path) do |f|%>
+        <%= f.label 'Name/Email'%>
+        <%= f.text_field :name,class:'form-control'%>
+        <%= f.label 'password'%>
+        <%= f.password_field :password,class:'form-control'%>
+        <br>
+        <%=f.submit "login",class:"btn btn-success form-control"%>
+        <%= link_to "no account? Register",new_users_path%>
+      <% end %>
+    </div>
+  </div>
+</div>
