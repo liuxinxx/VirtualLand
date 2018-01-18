@@ -17,5 +17,3 @@
 //= require app
 //= require bootstrap-tagsinput
 //= require_tree .
-
-
