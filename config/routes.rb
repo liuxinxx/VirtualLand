@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resource :users
   get 'lands/show'
-
+  post 'lands/validation'
   get 'lands/index'
 
   root 'lands#show'
