@@ -16,6 +16,8 @@ class UsersController < ApplicationController
          flash[:notice]= 'success!'
         end
       end
+      p @user.to_json
+      format.json{render json: @user.errors, status: 'unprocessable_entity'}
       format.js{}
     end
   end
