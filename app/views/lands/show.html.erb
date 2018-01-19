@@ -1,14 +1,14 @@
 <div id="map"></div>
 <div></div>
 <div class="panel panel-primary">
-  <div class="panel-heading">Panel heading without title</div>
+  <div class="panel-heading">待购买的土地</div>
   <div class="panel-body">
     <div class="add" ></div>
   </div>
   <div class="panel-footer">
     <div class="btn-group">
-      <button type="button" class="btn btn-success" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Action
+      <button id = "submit" type="button" class="btn btn-success" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Submit
       </button>
     </div>
   </div>
@@ -18,16 +18,33 @@
 <!-- 信息标记 -->
 <script>
   function initMap() {
-    var lands_json = '';
+    var land = '';
+    var lands = '';
     var uluru = {lat: <%=@tag_lat%>, lng: <%=@tag_lng%>};
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 2,
+      zoom: 16,
       center: uluru,
       // 禁止显示谷歌默认标签
-      disableDefaultUI: true
+      // disableDefaultUI: true
     });
     map.addListener('click', function(e) {
-      placeMarkerAndPanTo(e.latLng,map)
+      var lat = (parseInt(e.latLng.lat()/5))*5-2.5
+      var lng = (parseInt(e.latLng.lng()/5))*5+2.5
+      $.ajax({
+        url:'/lands/validation',
+        type:'post',
+        data:{'land':lat.toString()+","+lng.toString()},
+        success:function(result){
+          // alert(result);
+          // if (result[1]==true){
+            lands+=""+lat.toString()+","+lng.toString()+"=";
+            drawDoxes(e.latLng,map);
+          // }
+          // else{
+            // alert("fail");
+          // }
+        }
+      })
     });
     var contentString = '<%=render 'info_window' %>';
     var infowindow = new google.maps.InfoWindow({
@@ -58,36 +75,26 @@
       infowindow.open(map, marker);
     });
 
-    function placeMarkerAndPanTo(latLng, map) {
-      var lat = (parseInt(latLng.lat()/5))*5-2.5
-      var lng = (parseInt(latLng.lng()/5))*5+2.5
-      new google.maps.Rectangle({
-        strokeColor: '#FF0000',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#FF0000',
-        fillOpacity: 0.35,
-        map: map,
-        bounds: {
-          north: lat+2.5,
-          south: lat-2.5,
-          east: lng+2.5,
-          west: lng-2.5
-        }
-      });
-      $('.add').append("<span>["+lat.toString()+","+lng.toString()+"]  </span>");
-      lands_json+=""+lat.toString()+","+lng.toString()+"=";
-      return false;
-    }
     $('.btn').click(function() {
+      alert(lands);
       $.ajax({
-        url:'/lands/validation',
+        url:'/lands/create',
         type:'post',
-        data:{'lands':lands_json},
-        success:function(result){
-          alert(result);
-        }
+        data:{'land':lands},
+        // success:function(result){
+        //   // alert(result);
+        //   // if (result[1]==true){
+        //     lands+=""+lat.toString()+","+lng.toString()+"=";
+        //     drawDoxes(e.latLng,map,land)
+        //   // }
+        //   // else{
+        //     // alert("fail");
+        //   // }
+        // }
       })
+      // $("#submit").empty;
+      // $("#submit").attr({"disabled":"disabled"});
+      // $("#submit").text("正在验证~~");
     });
   }
 </script>

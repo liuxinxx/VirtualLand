@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(name:params[:session][:name]) || User.find_by(email:params[:session][:email])
+    @user = User.find_by(name:params[:session][:name]) || User.find_by(email:params[:session][:name])
     if !@user
       flash[:alert] = 'not found user'
       render 'new'
@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       render 'new'
     else
       login @user
-      redirect_to lands_show_url
+      redirect_to lands_show_url(params[:id]),notice: "Login success!"
     end
   end
 

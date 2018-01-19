@@ -5,7 +5,7 @@ class User < ApplicationRecord
     presence: true,
     uniqueness: { case_sensitive: false }
   validates :name,length:{in: 2..10},presence:true
-  validates :password,presence: true,length:{ in:6..16 }
+  validates :password,presence: true,length:{ in:6..16 },:on=>:create
 
   has_many :lands
   has_secure_password

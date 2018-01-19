@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   get 'lands/show'
   post 'lands/validation'
   get 'lands/index'
+  post 'lands/create'
 end

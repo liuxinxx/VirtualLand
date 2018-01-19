@@ -14,6 +14,8 @@ class UsersController < ApplicationController
           flash[:alert] =  @user.errors.full_messages
         else
          flash[:notice]= 'success!'
+         login user
+         redirect_to lands_show_url(params[:id]),notice: "Login success!"
         end
       end
       format.js{}
